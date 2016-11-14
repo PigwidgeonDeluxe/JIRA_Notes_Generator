@@ -1,0 +1,49 @@
+<html>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<head>
+<link rel="stylesheet" type="text/css" href="globalstyle.css">
+</head>
+<body>
+    <!--style="color: #ffffff; background-color: #263238"-->
+    <form id="tableForm" action="/response" method="GET">
+        <center>
+            <table>
+                <tr>
+                    <input type="button" class="button" id="clear_all" name="clear_all" value="Clear All">
+                </tr>
+                <!--username query-->
+                <tr>
+                    <td>Username:</td>
+                    <td> <input type="text" id="user_query" name="user_query" style="width: 500px"></td>
+                </tr>
+                <!--password query-->
+                <tr>
+                    <td>Password:</td>
+                    <td> <input type="password" id="pw_query" name="pw_query" style="width: 500px"></td>
+                </tr>
+                <!--project key query-->
+                <tr>
+                    <td>Project Key (i.e. DCRM):</td>
+                    <td> <input type="text" id="pk_query" name="pk_query" style="width: 500px"></td>
+                </tr>
+                </tr>
+            </table>
+            <!--submit button-->
+            <tr>
+                <td colspan="3"><input type="submit" class="button" style="height:30px;width:125px" value="Submit"></td>
+            </tr>
+        </center>
+    </form>
+</body>
+<script>
+//jQuery script to clear all fields
+    $(document).ready(function() {
+        //clear_all button clears all 
+        $("#clear_all").click(function() {
+            $("#user_query").val("");
+            $("#pw_query").val("");
+        });
+    }); 
+</script>
+
+</html>
