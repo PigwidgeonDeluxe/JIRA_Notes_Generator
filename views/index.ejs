@@ -1,12 +1,11 @@
 <html>
-<style type="text/css">
-</style>
+
 <head>
     <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="ejs.js"></script>
     <link rel="stylesheet" href="jquery-ui.min.css">
-	<script src="jquery.js"></script>
-	<script src="jquery-ui.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <link href="tabulator.css" rel="stylesheet">
     <script type="text/javascript" src="tabulator.js"></script>
     <link rel="stylesheet" type="text/css" href="globalstyle.css">
@@ -14,35 +13,75 @@
 
 <body>
     <pre><%= jsondata %></pre>
-    <div id="main-table" ></div>
+    <!--Tabulator table-->
+    <div id="main-table"></div> 
 </body>
 
 <script>
     //run script once the document is fully loaded
     $(document).ready(function() {
-        $("#main-table").tabulator({
-    fitColumns:true, //fit columns to width of table (optional)
-    pagination:"local",
-    columns:[ //Define Table Columns
-        {title:"Change ID", field:"ch_id", sorter:"string", align:"center"},
-        {title:"RFC Name", field:"rfc_name", sorter:"string", align:"center"},
-        {title:"Request Description", field:"des", sorter:"string", sortable:false, formatter:"textarea"},
-        {title:"State", field:"state", sorter:"string", align:"center"},
-        {title:"Priority", field:"priority", sorter:"string", align:"center"},
-        {title:"Owner", field:"owner", sorter:"string", align:"center"},
-    ],
-    rowClick:function(e, id, data, row){ //trigger an alert message when the row is clicked
-        alert("Row " + id + " Clicked");
-    },
-});
+        $("#main-table").tabulator({ //define Tabulator
+            fitColumns: true, //fit columns to width of table (optional)
+            pagination: "local",
+            columns: [ //Define Table Columns //Define columns as percentages to allow for dynamic resizing based on window size 
+                {
+                    title: "Change ID",
+                    field: "ch_id",
+                    sorter: "string",
+                    align: "center",
+                    width: "8%"
+                }, {
+                    title: "RFC Name",
+                    field: "rfc_name",
+                    sorter: "string",
+                    align: "center",
+                    width: "12%"
+                }, {
+                    title: "Request Description",
+                    field: "description",
+                    sorter: "string",
+                    sortable: false,
+                    formatter: "textarea",
+                    width: "52%"
+                }, {
+                    title: "State",
+                    field: "state",
+                    sorter: "string",
+                    align: "center",
+                    width: "8%"
+                }, {
+                    title: "Priority",
+                    field: "priority",
+                    sorter: "string",
+                    align: "center",
+                    width: "8%"
+                }, {
+                    title: "Owner",
+                    field: "owner",
+                    sorter: "string",
+                    align: "center",
+                    width: "12%"
+                },
+            ],
+            rowClick: function(e, id, data, row) { //trigger an alert message when the row is clicked
+                alert("Row " + id + " Clicked");
+            },
+        });
         //define some sample data
-var tabledata = [
-    {id:1, ch_id:"DCRM-161", rfc_name:"Panorama- rfc_name", des:"Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.Description for description.", state:"Requested", priority:"Medium", owner:"Person of ownership"},
-    
-];
+        var tabledata = [{
+                id: 1,
+                ch_id: "DCRM-161",
+                rfc_name: "Panorama- rfc_name",
+                description: "Bub bub snikt bub bub bub snikt snikt bub bub, bub sniktsnikt bub? Bub bub bub bub snikt bubbub snikt bub bub snikt bub bub snikt sniktbub, bub snikt bub sniktbub snikt sniktbub snikt bub Bub-Sniktsniktbub, bub snikt bub bub snikt 300 bubsnikt snikt. Bub snikt bub bub bub snikt snikt bub, snikt snikt snikt snikt bub bub bub bub bub snikt bub Bubsnikt sniktsniktsnikt. Bub bub sniktsnikt bub bub bub snikt bubsnikt bub bub. Snikt snikt snikt bub bub snikt bub bub bubsniktbub bub snikt bub bub bub bub bub snikt bubsnikt bub snikt, bub bub sniktsnikt bub. Bub snikt bub bub bub bub snikt snikt snikt bubbub snikt bub bubbub snikt sniktsniktsnikt? Snikt bubbub, bub. Bub bub snikt Bub bub sniktsnikt bub snikt bubsnikt bub snikt snikt bub BubsniktBub bub bub sniktBub bub bubbub snikt snikt bub, bub bub bubbub bubsnikt bub bub snikt, bubbub. Bub snikt bub snikt bub bub snikt snikt snikt bub snikt bub bub. Bub sniktsnikt snikt, bub. Snikt bub bub sniktbub, sniktbub, bub snikt bub snikt bub bub snikt snikt bubbub snikt, bub snikt snikt bub bub snikt. Bub snikt snikt snikt sniktsniktsnikt bub bub sniktbub bubbub, bub snikt bub sniktsnikt snikt snikt bubsnikt snikitysniktsnikt bub bub Bub Bubsnikt Mariko, bub snikt snikt bub bub bub bub bub snikt bub snikt bub sniktbubbub bub bub snikt bub bub snikt, bub sniktbub snikt. Snikt bub bub bub snikt snikt bub bubsnikt bubsniktsnikt bub snikt “bubbub” snikt bub bub bub bub bub bub bubub bub, bub bub bub bub bub bub snikt bub. Bub bub snikt, bub snikt, bub bub bub snikt bub bub, bub bubbub bubsniktbub. Snikt bub snikt bub bub bub bub bub bub bub snikt bub bub. Bub snikt snikt, bub.",
+                state: "Requested",
+                priority: "Medium",
+                owner: "Person of ownership"
+            },
 
-//load sample data into the table
-$("#main-table").tabulator("setData", tabledata);
+        ];
+
+        //load sample data into the table
+        $("#main-table").tabulator("setData", tabledata);
     });
 </script>
 
