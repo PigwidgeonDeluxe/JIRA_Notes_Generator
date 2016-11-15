@@ -1,2 +1,2 @@
 # JIRA_notes_generator
-Generates a table of issues/tasks for quick notes
+Generates a table of issues/tasks from JIRA for quick notes.
