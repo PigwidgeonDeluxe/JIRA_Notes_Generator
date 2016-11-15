@@ -20,6 +20,12 @@ app.get('/globalstyle.css', function(req, res) {
 })
 
 //send CSS for global html formatting
+app.get('/jquery-3.1.1.min.js', function(req, res) {
+    //send homepage
+    res.sendFile(__dirname + "/jquery-3.1.1.min.js");
+})
+
+//send CSS for global html formatting
 app.get('/jquery-ui.min.css', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/jquery-ui/jquery-ui.min.css");
