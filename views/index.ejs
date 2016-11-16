@@ -12,12 +12,11 @@
 </head>
 
 <body>
-    <pre><%= jsondata %></pre>
     <!--Tabulator table-->
     <div id="main-table"></div> 
 </body>
 
-<script>
+<script type="text/javascript">
     //run script once the document is fully loaded
     $(document).ready(function() {
         $("#main-table").tabulator({ //define Tabulator
@@ -29,12 +28,14 @@
                     field: "ch_id",
                     sorter: "string",
                     align: "center",
+                    formatter: "textarea",
                     width: "8%"
                 }, {
                     title: "RFC Name",
                     field: "rfc_name",
                     sorter: "string",
                     align: "center",
+                    formatter: "textarea",
                     width: "12%"
                 }, {
                     title: "Request Description",
@@ -48,18 +49,21 @@
                     field: "state",
                     sorter: "string",
                     align: "center",
+                    formatter: "textarea",
                     width: "8%"
                 }, {
                     title: "Priority",
                     field: "priority",
                     sorter: "string",
                     align: "center",
+                    formatter: "textarea",
                     width: "8%"
                 }, {
                     title: "Owner",
                     field: "owner",
                     sorter: "string",
                     align: "center",
+                    formatter: "textarea",
                     width: "12%"
                 },
             ],
@@ -67,19 +71,9 @@
                 alert("Row " + id + " Clicked");
             },
         });
-        //define some sample data
-        var tabledata = [{
-                id: 1,
-                ch_id: "DCRM-161",
-                rfc_name: "Panorama- rfc_name",
-                description: "Bub bub snikt bub bub bub snikt snikt bub bub, bub sniktsnikt bub? Bub bub bub bub snikt bubbub snikt bub bub snikt bub bub snikt sniktbub, bub snikt bub sniktbub snikt sniktbub snikt bub Bub-Sniktsniktbub, bub snikt bub bub snikt 300 bubsnikt snikt. Bub snikt bub bub bub snikt snikt bub, snikt snikt snikt snikt bub bub bub bub bub snikt bub Bubsnikt sniktsniktsnikt. Bub bub sniktsnikt bub bub bub snikt bubsnikt bub bub. Snikt snikt snikt bub bub snikt bub bub bubsniktbub bub snikt bub bub bub bub bub snikt bubsnikt bub snikt, bub bub sniktsnikt bub. Bub snikt bub bub bub bub snikt snikt snikt bubbub snikt bub bubbub snikt sniktsniktsnikt? Snikt bubbub, bub. Bub bub snikt Bub bub sniktsnikt bub snikt bubsnikt bub snikt snikt bub BubsniktBub bub bub sniktBub bub bubbub snikt snikt bub, bub bub bubbub bubsnikt bub bub snikt, bubbub. Bub snikt bub snikt bub bub snikt snikt snikt bub snikt bub bub. Bub sniktsnikt snikt, bub. Snikt bub bub sniktbub, sniktbub, bub snikt bub snikt bub bub snikt snikt bubbub snikt, bub snikt snikt bub bub snikt. Bub snikt snikt snikt sniktsniktsnikt bub bub sniktbub bubbub, bub snikt bub sniktsnikt snikt snikt bubsnikt snikitysniktsnikt bub bub Bub Bubsnikt Mariko, bub snikt snikt bub bub bub bub bub snikt bub snikt bub sniktbubbub bub bub snikt bub bub snikt, bub sniktbub snikt. Snikt bub bub bub snikt snikt bub bubsnikt bubsniktsnikt bub snikt “bubbub” snikt bub bub bub bub bub bub bubub bub, bub bub bub bub bub bub snikt bub. Bub bub snikt, bub snikt, bub bub bub snikt bub bub, bub bubbub bubsniktbub. Snikt bub snikt bub bub bub bub bub bub bub snikt bub bub. Bub snikt snikt, bub.",
-                state: "Requested",
-                priority: "Medium",
-                owner: "Person of ownership"
-            },
-
-        ];
-
+        //define some data from sent json data from nodejs server
+        var tabledata = <%- JSON.stringify(jsondata) %>
+        console.log(tabledata)
         //load sample data into the table
         $("#main-table").tabulator("setData", tabledata);
     });

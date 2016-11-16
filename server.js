@@ -103,7 +103,15 @@ app.get('/response', function(req, res, next) {
     }   
     //perform GET request
     //https.get(options, callback);
-    res.render('index.ejs', { jsondata: "Hello world!" });
+    res.render('index.ejs', { jsondata: [{
+                id: 1,
+                ch_id: "DCRM-161",
+                rfc_name: "Panorama- rfc_name",
+                description: "Bub bub snikt bub bub bub snikt snikt bub bub, bub sniktsnikt bub? Bub bub bub bub snikt bubbub snikt bub bub snikt bub bub snikt sniktbub, bub snikt bub sniktbub snikt sniktbub snikt bub Bub-Sniktsniktbub, bub snikt bub bub snikt 300 bubsnikt snikt. Bub snikt bub bub bub snikt snikt bub, snikt snikt snikt snikt bub bub bub bub bub snikt bub Bubsnikt sniktsniktsnikt. Bub bub sniktsnikt bub bub bub snikt bubsnikt bub bub. Snikt snikt snikt bub bub snikt bub bub bubsniktbub bub snikt bub bub bub bub bub snikt bubsnikt bub snikt, bub bub sniktsnikt bub. Bub snikt bub bub bub bub snikt snikt snikt bubbub snikt bub bubbub snikt sniktsniktsnikt? Snikt bubbub, bub. Bub bub snikt Bub bub sniktsnikt bub snikt bubsnikt bub snikt snikt bub BubsniktBub bub bub sniktBub bub bubbub snikt snikt bub, bub bub bubbub bubsnikt bub bub snikt, bubbub. Bub snikt bub snikt bub bub snikt snikt snikt bub snikt bub bub. Bub sniktsnikt snikt, bub. Snikt bub bub sniktbub, sniktbub, bub snikt bub snikt bub bub snikt snikt bubbub snikt, bub snikt snikt bub bub snikt. Bub snikt snikt snikt sniktsniktsnikt bub bub sniktbub bubbub, bub snikt bub sniktsnikt snikt snikt bubsnikt snikitysniktsnikt bub bub Bub Bubsnikt Mariko, bub snikt snikt bub bub bub bub bub snikt bub snikt bub sniktbubbub bub bub snikt bub bub snikt, bub sniktbub snikt. Snikt bub bub bub snikt snikt bub bubsnikt bubsniktsnikt bub snikt “bubbub” snikt bub bub bub bub bub bub bubub bub, bub bub bub bub bub bub snikt bub. Bub bub snikt, bub snikt, bub bub bub snikt bub bub, bub bubbub bubsniktbub. Snikt bub snikt bub bub bub bub bub bub bub snikt bub bub. Bub snikt snikt, bub.",
+                state: "Requested",
+                priority: "Medium",
+                owner: "Person of ownership"
+            },]});
 
 
 });
