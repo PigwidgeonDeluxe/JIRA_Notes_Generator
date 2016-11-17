@@ -81,7 +81,7 @@ app.post('/response', function(req, res, next) {
     var options = {
         host: 'ondhdp.atlassian.net',
         path: "/rest/api/2/search?jql=project=" + response["project_key"] + "&maxResults=-1",
-        auth: response["username"]+":"+response["password"]
+        auth: response["username"] + ":" + response["password"]
     };
     //callback function - function executed during https.get
     callback = function(response) {
@@ -98,8 +98,10 @@ app.post('/response', function(req, res, next) {
             parsedbody = JSON.parse(body)
             var formattedjson = jsonformat(parsedbody)
             console.log(formattedjson)
-            //send the JSON along with the table ejs
-            res.render('index.ejs', { jsondata: formattedjson});
+                //send the JSON along with the table ejs
+            res.render('index.ejs', {
+                jsondata: formattedjson
+            });
         });
     }
 
@@ -124,36 +126,48 @@ function jsonformat(inputjson) {
         outputjson[i]["rfc_name"] = inputjson["issues"][i]["fields"]["summary"];
         //add description fields to current array
         outputjson[i]["description"] = "";
-        for (x = 0; x <= 8; x++){
+        for (x = 0; x <= 8; x++) {
             //if the field isn't empty
-            if (inputjson["issues"][i]["fields"]["customfield_1040"+x] != null){
+            if (inputjson["issues"][i]["fields"]["customfield_1040" + x] != null) {
                 //add the appropriate decription name for each description entry.
-                if (x == 0){
+                if (x == 0) {
                     var desc_name = " Business Objective and Rationale: "
-                } else if (x == 1){
+                } else if (x == 1) {
                     var desc_name = " Business Requirements: "
-                } else if (x == 2){
+                } else if (x == 2) {
                     var desc_name = " Business Impact: "
-                } else if (x == 3){
+                } else if (x == 3) {
                     var desc_name = " End User Impact: "
+                } else if (x == 4) {
                     var desc_name = " Business/User Impact If Change Is Not Done: "
-                } else if (x == 5){
+                } else if (x == 5) {
                     var desc_name = " Risk Assessment: "
-                } else if (x == 6){
+                } else if (x == 6) {
                     var desc_name = " Solution: "
-                } else if (x == 8){
+                } else if (x == 8) {
                     var desc_name = " Benefits: "
                 }
-                //
-                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040"+x] + "\n";
+                //add the formatted decription to the array
+                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040" + x] + "\n" + "\n";
             }
+        }
+        //add the description as the description if it is not empty
+        if (inputjson["issues"][i]["fields"]["description"] != null) {
+            //add the formatted decription to the array
+            outputjson[i]["description"] += " Description: " + inputjson["issues"][i]["fields"]["description"] + "\n" + "\n";
         }
         //add state to current array
         outputjson[i]["state"] = inputjson["issues"][i]["fields"]["status"]["name"];
         //add priority to current array
         outputjson[i]["priority"] = inputjson["issues"][i]["fields"]["priority"]["name"];
-        //add owner to current array
+        //add reporter to current array
         outputjson[i]["reporter"] = inputjson["issues"][i]["fields"]["reporter"]["displayName"];
+        //add assignee to current array if an assignee exists
+        if (inputjson["issues"][i]["fields"]["assignee"] != null) {
+            outputjson[i]["assignee"] = inputjson["issues"][i]["fields"]["assignee"]["displayName"];
+        } else {
+            outputjson[i]["assignee"] = "N/A";
+        }
 
     }
     return outputjson;
