@@ -136,7 +136,6 @@ function jsonformat(inputjson) {
                     var desc_name = " Business Impact: "
                 } else if (x == 3){
                     var desc_name = " End User Impact: "
-                } else if (x == 4){
                     var desc_name = " Business/User Impact If Change Is Not Done: "
                 } else if (x == 5){
                     var desc_name = " Risk Assessment: "
@@ -146,7 +145,7 @@ function jsonformat(inputjson) {
                     var desc_name = " Benefits: "
                 }
                 //
-                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040"+x];
+                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040"+x] + "\n";
             }
         }
         //add state to current array
