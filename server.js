@@ -6,12 +6,12 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 //set view engine to ejs
 app.set('view engine', 'ejs');
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static('public'));
-app.use(bodyParser.json());
+
 
 //send CSS for global html formatting
 app.get('/globalstyle.css', function(req, res) {
@@ -68,53 +68,98 @@ app.get('/', function(req, res) {
 })
 
 //request the page
-app.get('/response', function(req, res, next) {
-	
+app.post('/response', function(req, res, next) {
+
     //get information from user submission
     response = {
         username: req.body.user_query,
         password: req.body.pw_query,
         project_key: req.body.pk_query
-    }
+    };
 
     //specify host/path/user
     var options = {
         host: 'ondhdp.atlassian.net',
         path: "/rest/api/2/search?jql=project=" + response["project_key"] + "&maxResults=-1",
-        auth: response["username"] + ":" + response["password"]
+        auth: response["username"]+":"+response["password"]
     };
-
-    //res.sendFile(__dirname + "/" + "response.html");
-
+    //callback function - function executed during https.get
     callback = function(response) {
-        var str = '';
-
+        var body = '';
         //another chunk of data has been recieved, so append it to `str`
         response.on('data', function(chunk) {
-            str += chunk;
+            body += chunk;
         });
 
         //the whole response has been recieved, write the response to the logs if enabled
-            console.log("Response recieved, connection successful");
-            response.on('end', function() {
-                //convert the recieved json string into JSON then push the recieved body to the user
-                res.json(JSON.parse(str));
-            });
-    }   
+        console.log("Response recieved, connection successful");
+
+        response.on('end', function() {
+            parsedbody = JSON.parse(body)
+            var formattedjson = jsonformat(parsedbody)
+            console.log(formattedjson)
+            //send the JSON along with the table ejs
+            res.render('index.ejs', { jsondata: formattedjson});
+        });
+    }
+
     //perform GET request
-    //https.get(options, callback);
-    res.render('index.ejs', { jsondata: [{
-                id: 1,
-                ch_id: "DCRM-161",
-                rfc_name: "Panorama- rfc_name",
-                description: "Bub bub snikt bub bub bub snikt snikt bub bub, bub sniktsnikt bub? Bub bub bub bub snikt bubbub snikt bub bub snikt bub bub snikt sniktbub, bub snikt bub sniktbub snikt sniktbub snikt bub Bub-Sniktsniktbub, bub snikt bub bub snikt 300 bubsnikt snikt. Bub snikt bub bub bub snikt snikt bub, snikt snikt snikt snikt bub bub bub bub bub snikt bub Bubsnikt sniktsniktsnikt. Bub bub sniktsnikt bub bub bub snikt bubsnikt bub bub. Snikt snikt snikt bub bub snikt bub bub bubsniktbub bub snikt bub bub bub bub bub snikt bubsnikt bub snikt, bub bub sniktsnikt bub. Bub snikt bub bub bub bub snikt snikt snikt bubbub snikt bub bubbub snikt sniktsniktsnikt? Snikt bubbub, bub. Bub bub snikt Bub bub sniktsnikt bub snikt bubsnikt bub snikt snikt bub BubsniktBub bub bub sniktBub bub bubbub snikt snikt bub, bub bub bubbub bubsnikt bub bub snikt, bubbub. Bub snikt bub snikt bub bub snikt snikt snikt bub snikt bub bub. Bub sniktsnikt snikt, bub. Snikt bub bub sniktbub, sniktbub, bub snikt bub snikt bub bub snikt snikt bubbub snikt, bub snikt snikt bub bub snikt. Bub snikt snikt snikt sniktsniktsnikt bub bub sniktbub bubbub, bub snikt bub sniktsnikt snikt snikt bubsnikt snikitysniktsnikt bub bub Bub Bubsnikt Mariko, bub snikt snikt bub bub bub bub bub snikt bub snikt bub sniktbubbub bub bub snikt bub bub snikt, bub sniktbub snikt. Snikt bub bub bub snikt snikt bub bubsnikt bubsniktsnikt bub snikt “bubbub” snikt bub bub bub bub bub bub bubub bub, bub bub bub bub bub bub snikt bub. Bub bub snikt, bub snikt, bub bub bub snikt bub bub, bub bubbub bubsniktbub. Snikt bub snikt bub bub bub bub bub bub bub snikt bub bub. Bub snikt snikt, bub.",
-                state: "Requested",
-                priority: "Medium",
-                owner: "Person of ownership"
-            },]});
+    https.get(options, callback);
 
 
 });
+//function that takes the JIRA JSON, then takes and formats the data for the table
+function jsonformat(inputjson) {
+    //create new list for final json output
+    var outputjson = [];
+    //loop for all issues
+    for (i = 0; i < inputjson["issues"].length; i++) {
+        //create a new array for current i
+        outputjson.push({});
+        //add id to current array
+        outputjson[i]["id"] = i;
+        //add change id to current array
+        outputjson[i]["ch_id"] = inputjson["issues"][i]["key"];
+        //add rfc_name to current array
+        outputjson[i]["rfc_name"] = inputjson["issues"][i]["fields"]["summary"];
+        //add description fields to current array
+        outputjson[i]["description"] = "";
+        for (x = 0; x <= 8; x++){
+            //if the field isn't empty
+            if (inputjson["issues"][i]["fields"]["customfield_1040"+x] != null){
+                //add the appropriate decription name for each description entry.
+                if (x == 0){
+                    var desc_name = " Business Objective and Rationale: "
+                } else if (x == 1){
+                    var desc_name = " Business Requirements: "
+                } else if (x == 2){
+                    var desc_name = " Business Impact: "
+                } else if (x == 3){
+                    var desc_name = " End User Impact: "
+                } else if (x == 4){
+                    var desc_name = " Business/User Impact If Change Is Not Done: "
+                } else if (x == 5){
+                    var desc_name = " Risk Assessment: "
+                } else if (x == 6){
+                    var desc_name = " Solution: "
+                } else if (x == 8){
+                    var desc_name = " Benefits: "
+                }
+                //
+                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040"+x];
+            }
+        }
+        //add state to current array
+        outputjson[i]["state"] = inputjson["issues"][i]["fields"]["status"]["name"];
+        //add priority to current array
+        outputjson[i]["priority"] = inputjson["issues"][i]["fields"]["priority"]["name"];
+        //add owner to current array
+        outputjson[i]["reporter"] = inputjson["issues"][i]["fields"]["reporter"]["displayName"];
+
+    }
+    return outputjson;
+}
+
 
 //start server at port 8081
 var server = app.listen(8081, function() {
