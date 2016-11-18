@@ -24,3 +24,6 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 
 ## Built With
 This webapp uses Tabulator for the table. Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of Tabulator is included in this Github.
+
+## License
+This project is licensed under the MIT license. Refer to LICENSE.md for details.
