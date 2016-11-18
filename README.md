@@ -23,7 +23,7 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 
 ## Built With
-This webapp uses Tabulator for the table. Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of Tabulator is included in this Github.
+This webapp uses Tabulator for the table. Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of Tabulator and its License is included in a zip folder in this Github.
 
 ## License
 This project is licensed under the MIT license. Refer to LICENSE.md for details.
