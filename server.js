@@ -83,33 +83,50 @@ app.post('/response', function(req, res, next) {
         path: "/rest/api/2/search?jql=project=" + response["project_key"] + "&maxResults=-1",
         auth: response["username"] + ":" + response["password"]
     };
-    //callback function - function executed during https.get
+
+    //callback function -  executed during https.get
     callback = function(response) {
         var body = '';
         //another chunk of data has been recieved, so append it to `str`
         response.on('data', function(chunk) {
             body += chunk;
-        });
+        })
 
         //the whole response has been recieved, write the response to the logs if enabled
-        console.log("Response recieved, connection successful");
+        console.log("Response recieved, connection successful.");
 
         response.on('end', function() {
-            parsedbody = JSON.parse(body)
+            console.log("Processing recieved body.");
+            //try parsing the response; catch any errors
+            try {
+                parsedbody = JSON.parse(body)
+            } catch (err) {
+                //if there is an error, print error to console and user and stop execution
+                var errormessage = "JSON.parse error: " + err
+                console.log(errormessage);
+                res.send(errormessage);
+                return;
+            }
+            //process the parsed json into a properly formatted json for Tabulator
             var formattedjson = jsonformat(parsedbody)
-            console.log(formattedjson)
-                //send the JSON along with the table ejs
+            console.log("Body processed. Sending data.");
+            //send the JSON along with the table ejs
             res.render('index.ejs', {
                 jsondata: formattedjson
             });
-        });
+            console.log("Data sent successfully.")
+        })
     }
 
-    //perform GET request
-    https.get(options, callback);
+    //perform GET request catch any errors and print them
+    https.get(options, callback).on('error', (err) => {
+            console.log(err);
+            res.send(err);
+        });;
 
 
-});
+})
+
 //function that takes the JIRA JSON, then takes and formats the data for the table
 function jsonformat(inputjson) {
     //create new list for final json output
@@ -129,7 +146,7 @@ function jsonformat(inputjson) {
         for (x = 0; x <= 8; x++) {
             //if the field isn't empty
             if (inputjson["issues"][i]["fields"]["customfield_1040" + x] != null) {
-                //add the appropriate decription name for each description entry.
+                //add the appropriate decription name for each description entry. ie 10402 us Business Impact
                 if (x == 0) {
                     var desc_name = " Business Objective and Rationale: "
                 } else if (x == 1) {
