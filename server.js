@@ -74,15 +74,28 @@ app.post('/response', function(req, res, next) {
     response = {
         username: req.body.user_query,
         password: req.body.pw_query,
-        project_key: req.body.pk_query
+        project_key: req.body.pk_query,
+        date_range: req.body.daterange_query,
+        is_requested: req.body.requested_query
     };
 
-    //specify host/path/user
+    //specify host/path/user + jql for JIRA API
     var options = {
         host: 'ondhdp.atlassian.net',
-        path: "/rest/api/2/search?jql=project=" + response["project_key"] + "&maxResults=-1",
+        path: "/rest/api/2/search?jql=project=" + response["project_key"],
         auth: response["username"] + ":" + response["password"]
     };
+
+    //if the user wants to restrict the status to requested only
+    if (response["is_requested"]) {
+        options["path"] += "%20AND%20status=requested";
+    }
+
+    //if the user defines a date range
+    if (response["date_range"] != ""){
+        options["path"] += "%20AND%20updated>=" + response["date_range"];
+    }
+
 
     //callback function -  executed during https.get
     callback = function(response) {
@@ -104,7 +117,7 @@ app.post('/response', function(req, res, next) {
                 //if there is an error, print error to console and user and stop execution
                 var errormessage = "JSON.parse error: " + err
                 console.log(errormessage);
-                res.send(errormessage);
+                res.send(errormessage + "Check that the user information or URL is valid.");
                 return;
             }
             //process the parsed json into a properly formatted json for Tabulator
@@ -178,7 +191,11 @@ function jsonformat(inputjson) {
         //add priority to current array
         outputjson[i]["priority"] = inputjson["issues"][i]["fields"]["priority"]["name"];
         //add reporter to current array
-        outputjson[i]["reporter"] = inputjson["issues"][i]["fields"]["reporter"]["displayName"];
+        if (inputjson["issues"][i]["fields"]["duedate"] != null) {
+            outputjson[i]["impdate"] = inputjson["issues"][i]["fields"]["duedate"];
+        } else {
+            outputjson[i]["impdate"] = "N/A";
+        }
         //add assignee to current array if an assignee exists
         if (inputjson["issues"][i]["fields"]["assignee"] != null) {
             outputjson[i]["assignee"] = inputjson["issues"][i]["fields"]["assignee"]["displayName"];
