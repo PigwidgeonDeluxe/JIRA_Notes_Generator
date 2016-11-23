@@ -4,7 +4,10 @@ var https = require('https');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+//global variables
 var formattedjson;
+//var for column names; allows for easier column addition but jsonformat still needs to be edited
+var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "originaltimeestimate"];
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -70,7 +73,10 @@ app.get('/', function(req, res) {
 
 //page for printing
 app.get('/printpage', function(req, res) {
-    res.end(JSON.stringify(formattedjson));
+    //res.end(JSON.stringify(formattedjson));
+    //send the JSON along with the table ejs
+
+    res.render('printable.ejs', {jsondata: formattedjson, columns: {col: col_names}});
 })
 
 //request the page
@@ -155,13 +161,13 @@ function jsonformat(inputjson) {
         //create a new array for current i
         outputjson.push({});
         //add id to current array
-        outputjson[i]["id"] = i;
+        outputjson[i][col_names[0]] = i;
         //add change id to current array
-        outputjson[i]["ch_id"] = inputjson["issues"][i]["key"];
+        outputjson[i][col_names[1]] = inputjson["issues"][i]["key"];
         //add rfc_name to current array
-        outputjson[i]["rfc_name"] = inputjson["issues"][i]["fields"]["summary"];
+        outputjson[i][col_names[2]] = inputjson["issues"][i]["fields"]["summary"];
         //add description fields to current array
-        outputjson[i]["description"] = "";
+        outputjson[i][col_names[3]] = "";
         for (x = 0; x <= 8; x++) {
             //if the field isn't empty
             if (inputjson["issues"][i]["fields"]["customfield_1040" + x] != null) {
@@ -193,26 +199,26 @@ function jsonformat(inputjson) {
             outputjson[i]["description"] += " Description: " + inputjson["issues"][i]["fields"]["description"] + "\n" + "\n";
         }
         //add state to current array
-        outputjson[i]["state"] = inputjson["issues"][i]["fields"]["status"]["name"];
+        outputjson[i][col_names[4]] = inputjson["issues"][i]["fields"]["status"]["name"];
         //add priority to current array
-        outputjson[i]["priority"] = inputjson["issues"][i]["fields"]["priority"]["name"];
+        outputjson[i][col_names[5]] = inputjson["issues"][i]["fields"]["priority"]["name"];
         //add reporter to current array
         if (inputjson["issues"][i]["fields"]["duedate"] != null) {
-            outputjson[i]["impdate"] = inputjson["issues"][i]["fields"]["duedate"];
+            outputjson[i][col_names[6]] = inputjson["issues"][i]["fields"]["duedate"];
         } else {
-            outputjson[i]["impdate"] = "N/A";
+            outputjson[i][col_names[6]] = "N/A";
         }
         //add assignee to current array if an assignee exists
         if (inputjson["issues"][i]["fields"]["assignee"] != null) {
-            outputjson[i]["assignee"] = inputjson["issues"][i]["fields"]["assignee"]["displayName"];
+            outputjson[i][col_names[7]] = inputjson["issues"][i]["fields"]["assignee"]["displayName"];
         } else {
-            outputjson[i]["assignee"] = "N/A";
+            outputjson[i][col_names[7]] = "N/A";
         }
         //add the amount of effort/cost (estimate days * 900) if an estimation exists
         if (inputjson["issues"][i]["fields"]["aggregatetimeoriginalestimate"] != null){
-            outputjson[i]["originaltimeestimate"] = "$" + parseInt(inputjson["issues"][i]["fields"]["assignee"]["displayName"]) * 900;
+            outputjson[i][col_names[8]] = "$" + parseInt(inputjson["issues"][i]["fields"]["assignee"]["displayName"]) * 900;
         } else {
-            outputjson[i]["originaltimeestimate"] = "N/A";
+            outputjson[i][col_names[8]] = "N/A";
         }
 
     }
