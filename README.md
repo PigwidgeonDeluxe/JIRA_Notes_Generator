@@ -1,4 +1,4 @@
-# JIRA_notes_generator
+# JIRA Notes Table Generator
 ## Synopsis
 This is a webapp that generates a table of issues/tasks from JIRA for quick meeting notes.
 
