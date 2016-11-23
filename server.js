@@ -4,6 +4,7 @@ var https = require('https');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+var formattedjson;
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -67,6 +68,11 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + "/" + "homepage.html");
 })
 
+//page for printing
+app.get('/printpage', function(req, res) {
+    res.end(JSON.stringify(formattedjson));
+})
+
 //request the page
 app.post('/response', function(req, res, next) {
 
@@ -112,16 +118,16 @@ app.post('/response', function(req, res, next) {
             console.log("Processing recieved body.");
             //try parsing the response; catch any errors
             try {
-                parsedbody = JSON.parse(body)
+                var parsedbody = JSON.parse(body)
             } catch (err) {
                 //if there is an error, print error to console and user and stop execution
-                var errormessage = "JSON.parse error: " + err
+                errormessage = "JSON.parse error: " + err
                 console.log(errormessage);
                 res.send(errormessage + "Check that the user information or URL is valid.");
                 return;
             }
             //process the parsed json into a properly formatted json for Tabulator
-            var formattedjson = jsonformat(parsedbody)
+            formattedjson = jsonformat(parsedbody)
             console.log("Body processed. Sending data.");
             //send the JSON along with the table ejs
             res.render('index.ejs', {
@@ -201,6 +207,12 @@ function jsonformat(inputjson) {
             outputjson[i]["assignee"] = inputjson["issues"][i]["fields"]["assignee"]["displayName"];
         } else {
             outputjson[i]["assignee"] = "N/A";
+        }
+        //add the amount of effort/cost (estimate days * 900) if an estimation exists
+        if (inputjson["issues"][i]["fields"]["aggregatetimeoriginalestimate"] != null){
+            outputjson[i]["originaltimeestimate"] = "$" + parseInt(inputjson["issues"][i]["fields"]["assignee"]["displayName"]) * 900;
+        } else {
+            outputjson[i]["originaltimeestimate"] = "N/A";
         }
 
     }
