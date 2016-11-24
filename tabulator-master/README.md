@@ -1,4 +1,4 @@
-#NOTE: This is a modified version of Tabulator made for this webapp
+![Tabluator Table](http://olifolkerd.github.io/tabulator/images/tabulator.png)
 
 ### Version 2.8 Out Now!
 

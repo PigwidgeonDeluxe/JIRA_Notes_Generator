@@ -1522,7 +1522,7 @@
 				case "print":
 				self.paginationCurrentPage = 2;
 				$.get("/printpage", function(data, status){
-        			window.location.replace("/printpage");
+        			window.location.href = "/printpage";
     			});
 				break;
 			}

@@ -9,7 +9,6 @@
 </head>
 <style>
     /*formatting for print-table div (printable.ejs)*/
-    
     div #print-table {
         white-space: pre;
     }
@@ -30,14 +29,14 @@
 
         //create the column names
         for (i = 1; i < columndata.length; i++) {
-            content += '<td>' + JSON.stringify(columndata[i]) + '</td>';
+            content += '<td>' + JSON.stringify(columndata[i]).replace(/['"]+/g, '') + '</td>';
         }
 
         //populate and create the column cells/data
         for (i = 0; i < tabledata.length; i++) { //loop by row
             content += '<tr>';
-            for (x = 1; x < columndata.length; x++) { //loop by column
-                content += '<td>' + JSON.stringify(tabledata[0][columndata[x]]).replace(/['"]+/g, '') + '</td>';
+            for (x = 1; x < columndata.length; x++) { //loop by column of current row
+                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).replace(/['"]+|\\r/g, '').replace(/\\n\\n/g, '<br />') + '</td>';
             }
             content += '</tr>';
         }

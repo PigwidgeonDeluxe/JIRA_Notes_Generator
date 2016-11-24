@@ -7,7 +7,7 @@ var ejs = require('ejs');
 //global variables
 var formattedjson;
 //var for column names; allows for easier column addition but jsonformat still needs to be edited
-var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "originaltimeestimate"];
+var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "effort"];
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
