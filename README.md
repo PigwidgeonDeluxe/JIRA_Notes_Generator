@@ -1,7 +1,7 @@
 # JIRA Notes Table Generator
 Latest version: V 0.5.1
 ## Synopsis
-This is a webapp that generates a table of issues/tasks from JIRA for quick meeting notes.
+This is a webapp that generates a table of issues/tasks from JIRA using the JIRA API for quick meeting notes.
 
 ## Motivation
 This webapp was created to fulfill the need of quickly creating meeting notes from JIRA and is intended to replace a Excel VBS solution.
@@ -26,6 +26,12 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 
 ###Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome).
+
+##Troubleshooting Tips
+###ETIMEDOUT
+This means that the webapp was unable to connect to the JIRA API. Doublecheck the webapp's internet connection to see if there are any proxies or firewalls blocking the connection.
+###JSON.parse error
+This means that the returned JSON from JIRA was invalid. This usually means that the username or password you entered was incorrect. The least common reason would be an incorrect URL should the JIRA API ever be changed.
 
 ## Built With
 This webapp uses a custom modified version of Tabulator to create a table. This modified version includes a Print button that calls for /printpage which is a simplified print friendly page of the table. The original Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of the modified Tabulator and its original License is included in this Github.
