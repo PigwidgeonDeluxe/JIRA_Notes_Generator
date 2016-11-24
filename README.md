@@ -1,4 +1,5 @@
 # JIRA Notes Table Generator
+Latest version: V 0.5.0 (Print capability finalized)
 ## Synopsis
 This is a webapp that generates a table of issues/tasks from JIRA for quick meeting notes.
 
@@ -22,8 +23,11 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 2. Run the webapp from a command prompt or terminal; open cmd/terminal, cd  to the webapp directory, and start the webapp using "node server.js" without quotes.
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 
+###Using the Print function
+The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome).
+
 ## Built With
-This webapp uses a custom modified version of Tabulator to create a table. This modified version includes a Print button that calls for /printpage. The original Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of the modified Tabulator and its original License is included in this Github.
+This webapp uses a custom modified version of Tabulator to create a table. This modified version includes a Print button that calls for /printpage which is a simplified print friendly page of the table. The original Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of the modified Tabulator and its original License is included in this Github.
 
 ## License
 This project is licensed under the MIT license. Refer to LICENSE.md for details.
