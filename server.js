@@ -215,8 +215,8 @@ function jsonformat(inputjson) {
             outputjson[i][col_names[7]] = "N/A";
         }
         //add the amount of effort/cost (estimate days * 900) if an estimation exists
-        if (inputjson["issues"][i]["fields"]["aggregatetimeoriginalestimate"] != null){
-            outputjson[i][col_names[8]] = "$" + parseInt(inputjson["issues"][i]["fields"]["assignee"]["displayName"]) * 900;
+        if (inputjson["issues"][i]["fields"]["customfield_10506"] != null){
+            outputjson[i][col_names[8]] = "$ " + parseFloat(inputjson["issues"][i]["fields"]["customfield_10506"]) * 900;
         } else {
             outputjson[i][col_names[8]] = "N/A";
         }

@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="jquery-ui.min.css">
     <script src="jquery.js"></script>
     <script src="jquery-ui.min.js"></script>
-</head>
-<style>
-    /*formatting for print-table div (printable.ejs)*/
-    div #print-table {
-        white-space: pre;
-    }
+    <!--css for avoiding table row splitting when printing-->
+<style type="text/css">
+    table { page-break-inside:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
 </style>
+
+</head>
 
 <body>
     <!--table-->
@@ -28,15 +30,17 @@
         var content = "<table border='1'>"
 
         //create the column names
+        content += '<tr>';
         for (i = 1; i < columndata.length; i++) {
             content += '<td>' + JSON.stringify(columndata[i]).replace(/['"]+/g, '') + '</td>';
         }
+        content += '</tr>';
 
         //populate and create the column cells/data
         for (i = 0; i < tabledata.length; i++) { //loop by row
             content += '<tr>';
             for (x = 1; x < columndata.length; x++) { //loop by column of current row
-                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).replace(/['"]+|\\r/g, '').replace(/\\n\\n/g, '<br />') + '</td>';
+                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).replace(/['"]+|\\r/g, '').replace(/\\n/g, '<br />') + '</td>';
             }
             content += '</tr>';
         }
