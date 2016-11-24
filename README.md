@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.5.0 (Print capability finalized)
+Latest version: V 0.5.1
 ## Synopsis
 This is a webapp that generates a table of issues/tasks from JIRA for quick meeting notes.
 
@@ -19,7 +19,8 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 - jquery.tabulator
 
 ## Installation
-1. Download the webapp and install the prerequisites; extract the three folders named "jquery-ui", "node_modules", and "tabulator-master" to their respective names inside the webapp directory.
+0. Download node.js and npm; go to https://nodejs.org/en/ to download Node.js and https://nodejs.org/en/download/ to download npm. Administrator privileges will be required.
+1. Download the webapp and install the prerequisites; extract the three folders named "jquery-ui", and "node_modules" to their respective folder names inside the webapp's root directory.
 2. Run the webapp from a command prompt or terminal; open cmd/terminal, cd  to the webapp directory, and start the webapp using "node server.js" without quotes.
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 
