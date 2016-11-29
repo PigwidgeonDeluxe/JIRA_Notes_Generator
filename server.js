@@ -112,12 +112,12 @@ app.post('/response', function(req, res, next) {
     //callback function -  executed during https.get
     callback = function(response) {
         var body = '';
-        //another chunk of data has been recieved, so append it to `str`
+        //another chunk of data has been recieved, so append it to `body`
         response.on('data', function(chunk) {
             body += chunk;
         })
 
-        //the whole response has been recieved, write the response to the logs if enabled
+        //the whole response has been recieved
         console.log("Response recieved, connection successful.");
 
         response.on('end', function() {
