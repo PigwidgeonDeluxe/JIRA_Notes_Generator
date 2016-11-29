@@ -1,13 +1,13 @@
 {
   "name": "JIRA_notes_generator",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.5.1",
+  "description": "Generates notes using JIRA API",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jeffrey Xu",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
