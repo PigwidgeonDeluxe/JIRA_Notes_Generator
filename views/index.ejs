@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="ejs.js"></script>
     <link rel="stylesheet" href="jquery-ui.min.css">
     <script src="jquery.js"></script>
@@ -20,8 +20,9 @@
     //run script once the document is fully loaded
     $(document).ready(function() {
         $("#main-table").tabulator({ //define Tabulator
-            fitColumns: true, //fit columns to width of table (optional)
-            pagination: "local",
+            pagination:true,
+            fitColumns:false,
+            colMinWidth:80,
             columns: [ //Define Table Columns //Define columns as percentages to allow for dynamic resizing based on window size 
                 {
                     title: "ID",
@@ -29,42 +30,93 @@
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "6%"
+                    width: "9%"
                 }, {
                     title: "RFC Name",
                     field: "rfc_name",
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "12%"
+                    width: "14%"
                 }, {
                     title: "Request Description",
                     field: "description",
                     sorter: "string",
                     sortable: false,
                     formatter: "textarea",
-                    width: "47%"
+                    width: "38%"
                 }, {
                     title: "State",
                     field: "state",
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "7%"
+                    width: "9%",
+                    //set the colours for different priorities
+                    formatter:function(value, data){
+                        if(value == "Requested"){//bright gold
+                            return "<span style='color:#FDD017; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Declined"){
+                            return "<span style='color:red; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Approved"){//green apple
+                            return "<span style='color:#4CC417; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Backlog"){
+                            return "<span style='color:orange; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Development"){
+                            return "<span style='color:blue; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "QA"){
+                            return "<span style='color:purple; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Ready for Release"){//pine green
+                            return "<span style='color:#387C44; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Implemented"){//hazel green
+                            return "<span style='color:#617C58; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else{
+                            return value;
+                        }
+                    }
                 }, {
                     title: "Priority",
                     field: "priority",
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "7%"
+                    width: "7%",
+                    //set the colours for different priorities
+                    formatter:function(value, data){
+                        if(value == "Highest"){
+                            return "<span style='color:red; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "High"){
+                            return "<span style='color:#E55451; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Medium"){
+                            return "<span style='color:orange; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Low"){
+                            return "<span style='color:green; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else if(value == "Lowest"){
+                            return "<span style='color:#6CBB3C; font-weight:bold;'>" + value + "</span>";
+                        }
+                        else{
+                            return value;
+                        }
+                    }
                 }, {
                     title: "ImpDate",
                     field: "impdate",
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "7%"
+                    width: "8%"
                 }, {
                     title: "Effort",
                     field: "effort",
@@ -79,7 +131,7 @@
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "8%"
+                    width: "9%"
                 },
             ],
             rowClick: function(e, id, data, row) { //open the issue for the row when the row is clicked
