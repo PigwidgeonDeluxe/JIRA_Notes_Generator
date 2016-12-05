@@ -83,7 +83,7 @@
                 },
             ],
             rowClick: function(e, id, data, row) { //open the issue for the row when the row is clicked
-                window.open("https://ondhdp.atlassian.net/projects/" + ((tabledata[id]["ch_id"]).split("-"))[0] + "/issues/" + tabledata[id]["ch_id"]);
+                window.open("https://ondhdp.atlassian.net/projects/" + data["ch_id"].split("-")[0] + "/issues/" + data["ch_id"]);
             },
         });
         //define some data from sent json data from nodejs server
