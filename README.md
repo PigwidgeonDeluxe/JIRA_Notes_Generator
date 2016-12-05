@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.5.1
+Latest version: V 0.5.3 - added colours for Priority and State columns
 ## Synopsis
 This is a webapp that generates a table of issues/tasks from JIRA using the JIRA API for quick meeting notes.
 
