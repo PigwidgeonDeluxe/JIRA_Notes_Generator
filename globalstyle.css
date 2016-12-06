@@ -9,7 +9,9 @@ body {
     font-family: normal x-small verdana, arial, helvetica, sans-serif;
     color: #b2ccd6;
 }
-
+td{
+    line-height: 30px;
+}
 /*formatting for main-table div (index.ejs)*/
 #main-table{
     display: block;
@@ -19,6 +21,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 /*formatting for tableForm (homepage)*/
 #tableForm{
     position: absolute;

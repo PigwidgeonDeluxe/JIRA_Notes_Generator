@@ -163,7 +163,7 @@ function jsonformat(inputjson) {
         //add id to current array
         outputjson[i][col_names[0]] = i;
         //add change id to current array
-        outputjson[i][col_names[1]] = inputjson["issues"][i]["key"];
+        outputjson[i][col_names[1]] = "<b>" + inputjson["issues"][i]["key"] + "</b";
         //add rfc_name to current array
         outputjson[i][col_names[2]] = inputjson["issues"][i]["fields"]["summary"];
         //add description fields to current array
@@ -173,30 +173,30 @@ function jsonformat(inputjson) {
             if (inputjson["issues"][i]["fields"]["customfield_1040" + x] != null) {
                 //add the appropriate decription name for each description entry. ie 10402 us Business Impact
                 if (x == 0) {
-                    var desc_name = " Business Objective and Rationale: "
+                    var desc_name = "<b>Business Objective and Rationale: </b>"
                 } else if (x == 1) {
-                    var desc_name = " Business Requirements: "
+                    var desc_name = "<b>Business Requirements: </b>"
                 } else if (x == 2) {
-                    var desc_name = " Business Impact: "
+                    var desc_name = "<b>Business Impact: </b>"
                 } else if (x == 3) {
-                    var desc_name = " End User Impact: "
+                    var desc_name = "<b>End User Impact: </b>"
                 } else if (x == 4) {
-                    var desc_name = " Business/User Impact If Change Is Not Done: "
+                    var desc_name = "<b>Business/User Impact If Change Is Not Done: </b>"
                 } else if (x == 5) {
-                    var desc_name = " Risk Assessment: "
+                    var desc_name = "<b>Risk Assessment: </b>"
                 } else if (x == 6) {
-                    var desc_name = " Solution: "
+                    var desc_name = "<b>Solution: </b>"
                 } else if (x == 8) {
-                    var desc_name = " Benefits: "
+                    var desc_name = "<b>Benefits: </b>"
                 }
                 //add the formatted decription to the array
-                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040" + x] + "\n" + "\n";
+                outputjson[i]["description"] += desc_name + inputjson["issues"][i]["fields"]["customfield_1040" + x] + "\n";
             }
         }
         //add the description as the description if it is not empty
         if (inputjson["issues"][i]["fields"]["description"] != null) {
             //add the formatted decription to the array
-            outputjson[i]["description"] += " Description: " + inputjson["issues"][i]["fields"]["description"] + "\n" + "\n";
+            outputjson[i]["description"] += " Description: " + inputjson["issues"][i]["fields"]["description"] + "\n";
         }
         //add state to current array
         outputjson[i][col_names[4]] = inputjson["issues"][i]["fields"]["status"]["name"];
