@@ -25,7 +25,7 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 
 ###Using the Print function
-The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome).
+The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). (Note: make sure to allow background graphics in your print settings or else the headers will be very light)
 
 ##Troubleshooting Tips
 ###ETIMEDOUT
