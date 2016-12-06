@@ -34,7 +34,7 @@ This means that the webapp was unable to connect to the JIRA API. Doublecheck th
 This means that the returned JSON from JIRA was invalid. This usually means that the username or password you entered was incorrect. The least common reason would be an incorrect URL should the JIRA API ever be changed.
 
 ## Built With
-This webapp uses a custom modified version of Tabulator to create a table. This modified version includes a Print button that calls for /printpage which is a simplified print friendly page of the table. The original Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with an MIT License. A copy of the modified Tabulator and its original License is included in this Github.
+This webapp uses a slightly bespoke version of Tabulator to create a table. This modified version includes a Print button that calls for /printpage which is a simplified print friendly page of the table. The original Tabulator can be found here: http://olifolkerd.github.io/tabulator/ and currently is used with this projeact under the MIT License. A copy of the bespoke Tabulator and its original License is included in this Github. All credit for tabulator goes to olifolkerd.
 
 ## License
 This project is licensed under the MIT license. Refer to LICENSE.md for details.
