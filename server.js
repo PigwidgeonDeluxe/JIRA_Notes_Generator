@@ -94,7 +94,7 @@ app.post('/response', function(req, res, next) {
     //specify host/path/user + jql for JIRA API
     var options = {
         host: 'ondhdp.atlassian.net',
-        path: "/rest/api/2/search?jql=project=" + response["project_key"],
+        path: "/rest/api/2/search?jql=issuetype%20=%20Change%20AND%20project=" + response["project_key"],
         auth: response["username"] + ":" + response["password"]
     };
 
