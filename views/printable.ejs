@@ -64,7 +64,7 @@
         for (i = 0; i < tabledata.length; i++) { //loop by row
             content += '<tr>';
             for (x = 1; x < columndata.length; x++) { //loop by column of current row
-                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).replace(/['"]+|\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />') + '</td>';
+                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).substr(1).slice(0, -1).replace(/\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />').replace(/\\/g, "") + '</td>'; + '</td>';
             }
             content += '</tr>';
         }
