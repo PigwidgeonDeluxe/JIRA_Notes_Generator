@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.6.2 - added filter to show only Change issues
+Latest version: V 0.6.3 - fixed accidental stripping of quotation marks
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
