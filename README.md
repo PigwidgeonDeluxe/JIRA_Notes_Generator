@@ -27,6 +27,13 @@ This webapp was created to fulfill the need of quickly creating meeting notes fr
 ###Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). (Note: make sure to allow background graphics in your print settings or else the headers will be very light. Minimal page borders is recommended as well.)
 
+##Screenshots
+***
+![Login Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20login.png)
+![Main Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20table.png)
+![Print Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20print.png)
+***
+
 ##Troubleshooting Tips
 ###ETIMEDOUT
 This means that the webapp was unable to connect to the JIRA API. Doublecheck the webapp's internet connection to see if there are any proxies or firewalls blocking the connection.
