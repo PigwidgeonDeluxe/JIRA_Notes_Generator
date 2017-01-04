@@ -29,8 +29,11 @@ The Print function takes the user to a page containing a simple html table versi
 
 ##Screenshots
 ***
+###Login Page
 ![Login Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20login.png)
+###Main Page
 ![Main Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20table.png)
+###Print Page
 ![Print Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20print.png)
 ***
 
