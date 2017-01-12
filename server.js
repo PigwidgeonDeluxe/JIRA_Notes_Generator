@@ -225,13 +225,21 @@ function jsonformat(inputjson) {
     return outputjson;
 }
 
+//load server-config.json to get setting for port
+fs.readFile('server-conf.json', 'utf8', function(err, data){
+    if (err) {
+        console.log("Configuration file server-conf.json' not found. Using default port 8081.");
+        var settings_port = "8081";
+    } else {
+        var parsedsettings = parse_body(data);
+        var settings_port = parsedsettings["port"];
+    } 
+    //start server at given port
+    var server = app.listen(settings_port, function() {
+        var host = server.address().address
+        var port = server.address().port
+            //print to console server address and port
+        console.log("Server listening at http://%s:%s", host, port);
 
-//start server at port 8081
-var server = app.listen(8081, function() {
-
-    var host = server.address().address
-    var port = server.address().port
-        //print to console server address and port
-    console.log("Server listening at http://%s:%s", host, port);
-
-})
+    })
+});
