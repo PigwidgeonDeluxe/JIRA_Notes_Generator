@@ -6,6 +6,9 @@ This is a webapp that generates a table of 'Change' issues/tasks from JIRA using
 ## Motivation
 This webapp was created to fulfill the need of quickly creating meeting notes from JIRA and is intended to replace a Excel VBS solution.
 
+## Note
+This webapp does not have HTTPS for communication between the webapp and the user. This webapp only uses HTTPS for communicating with JIRA. As such, it is recommended only to use this webapp on a trusted secure network, or on the user's computer.
+
 ## Prerequisites
 #### This webapp requires:
 - npm
