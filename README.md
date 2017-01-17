@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.6.4 - added server configuration (server-conf.json) to allow easier port changing
+Latest version: V 0.6.5 - added print selection
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
@@ -29,6 +29,8 @@ This webapp does not have HTTPS for communication between the webapp and the use
 
 ###Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). (Note: make sure to allow background graphics in your print settings or else the headers will be very light. Minimal page borders is recommended as well.)
+##Print selection
+You can now select which issues to print and omit. The default print option is to print, and clicking on the P? column ticks either enables or disables the issue for printing. (Note: if you ever go back to the table page, make sure to refresh the page otherwise the print page might not work properly the next time)
 
 ##Troubleshooting Tips
 ###ETIMEDOUT
