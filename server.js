@@ -233,7 +233,7 @@ fs.readFile('server-conf.json', 'utf8', function(err, data){
         var settings_port = "8081";
     } else {
         try {
-            var parsedbody = JSON.parse(data)
+            var parsedsettings = JSON.parse(data)
             var settings_port = parsedsettings["port"];
         } catch (err) {
             //if there is an error, print error to console and user and stop execution
