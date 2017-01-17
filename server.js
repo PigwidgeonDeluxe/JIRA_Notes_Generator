@@ -7,7 +7,7 @@ var ejs = require('ejs');
 //global variables
 var formattedjson;
 //var for column names; allows for easier column addition but jsonformat still needs to be edited
-var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "effort"];
+var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "effort", "print"];
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static('public'));
-
 
 //send CSS for global html formatting
 app.get('/globalstyle.css', function(req, res) {
@@ -69,6 +68,16 @@ app.get('/ejs.js', function(req, res) {
 app.get('/', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/" + "homepage.html");
+})
+
+app.post('/refreshdata', function(req, res){
+    //if the table gets edited, the refreshed data is posted here
+    response = {
+        jsonbody: req.body["jsonrefresh"]
+    }
+    //console.log(response["jsonbody"])
+    //replace the old data with the refreshed data
+    formattedjson = response["jsonbody"];
 })
 
 //page for printing
@@ -220,6 +229,8 @@ function jsonformat(inputjson) {
         } else {
             outputjson[i][col_names[8]] = "N/A";
         }
+        //set default print value to true
+        outputjson[i][col_names[9]] = true;
 
     }
     return outputjson;

@@ -57,18 +57,20 @@
 
         //create the column names
         content += '<thead>';
-        for (i = 1; i < columndata.length; i++) {
+        for (i = 1; i < columndata.length - 1; i++) {
             content += '<th>' + JSON.stringify(columndata[i]).replace(/['"]+/g, '') + '</th>';
         }
         content += '</thead>';
 
         //populate and create the column cells/data
         for (i = 0; i < tabledata.length; i++) { //loop by row
-            content += '<tr>';
-            for (x = 1; x < columndata.length; x++) { //loop by column of current row
-                content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).substr(1).slice(0, -1).replace(/\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />').replace(/\\/g, "") + '</td>'; + '</td>';
+            if (tabledata[i][columndata[9]] == "true"){
+                content += '<tr>';
+                for (x = 1; x < columndata.length - 1; x++) { //loop by column of current row (omit last 'print' row -)
+                    content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).substr(1).slice(0, -1).replace(/\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />').replace(/\\/g, "") + '</td>'; + '</td>';
+                }
+                content += '</tr>';
             }
-            content += '</tr>';
         }
         content += ""
 

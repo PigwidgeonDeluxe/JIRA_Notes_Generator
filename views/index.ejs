@@ -46,7 +46,7 @@
                     sorter: "string",
                     sortable: false,
                     formatter: "textarea",
-                    width: "38%"
+                    width: "36%"
                 }, {
                     title: "State",
                     field: "state",
@@ -118,7 +118,7 @@
                     sorter: "string",
                     align: "center",
                     formatter: "textarea",
-                    width: "8%"
+                    width: "7%"
                 }, {
                     title: "Effort",
                     field: "effort",
@@ -134,12 +134,34 @@
                     align: "center",
                     formatter: "textarea",
                     width: "8%"
-                },
+                }, {
+                    title:"P?",
+                    field:"print",
+                    align:"center",
+                    sortable: false,
+                    editable:true,
+                    formatter:"tickCross",
+                    width: "2%"
+                }
             ],
             rowClick: function(e, id, data, row) { //open the issue for the row when the row is clicked
                 var data_chid =  data["ch_id"].replace(/[<b>]|[</b>]/g, "");
                 window.open("https://ondhdp.atlassian.net/projects/" + data_chid.split("-")[0] + "/issues/" + data_chid);
             },
+            cellEdited: function(id,data,row) { //This callback is called any time a cell is edited
+                tabledata = $("#main-table").tabulator("getData")
+                //refresh the data 
+                $.ajax({
+                    type: 'POST',
+                    url: '/refreshdata',
+                    dataType: "json",
+                    data: {"jsonrefresh": tabledata},
+                    success: function(data){
+                        data = JSON.parse(data);
+                        console.log(data);
+                    }
+                })
+            }
         });
         //define some data from sent json data from nodejs server
         var tabledata = <%- JSON.stringify(jsondata) %>
