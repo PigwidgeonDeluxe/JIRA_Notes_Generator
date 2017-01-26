@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.6.5 - added print selection
+Latest version: V 0.6.6 - RFC_name column now wraps around to the next line if the data text is too long for the column.
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
