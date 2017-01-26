@@ -174,7 +174,7 @@ function jsonformat(inputjson) {
         //add change id to current array
         outputjson[i][col_names[1]] = "<b>" + inputjson["issues"][i]["key"] + "</b";
         //add rfc_name to current array
-        outputjson[i][col_names[2]] = inputjson["issues"][i]["fields"]["summary"];
+        outputjson[i][col_names[2]] = '<center><td valign="top">' + inputjson["issues"][i]["fields"]["summary"] + "</td></center>";
         //add description fields to current array
         outputjson[i][col_names[3]] = "";
         for (x = 0; x <= 8; x++) {
