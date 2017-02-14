@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.6.6 - RFC_name column now wraps around to the next line if the data text is too long for the column.
+Latest version: V 0.6.7 - Fixed bug where print page is not refreshing when going back
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
@@ -28,7 +28,7 @@ This webapp does not have HTTPS for communication between the webapp and the use
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 
 ###Using the Print function
-The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). (Note: make sure to allow background graphics in your print settings or else the headers will be very light. Minimal page borders is recommended as well.)
+The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). 
 ##Print selection
 You can now select which issues to print and omit. The default print option is to print, and clicking on the P? column ticks either enables or disables the issue for printing. (Note: if you ever go back to the table page, make sure to refresh the page otherwise the print page might not work properly the next time)
 
