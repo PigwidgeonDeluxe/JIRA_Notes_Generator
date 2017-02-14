@@ -174,7 +174,7 @@ function jsonformat(inputjson) {
         //add change id to current array
         outputjson[i][col_names[1]] = "<b>" + inputjson["issues"][i]["key"] + "</b";
         //add rfc_name to current array
-        outputjson[i][col_names[2]] = '<center><td valign="top">' + inputjson["issues"][i]["fields"]["summary"] + "</td></center>";
+        outputjson[i][col_names[2]] = '<center><div valign="top">' + inputjson["issues"][i]["fields"]["summary"] + "</div></center>";
         //add description fields to current array
         outputjson[i][col_names[3]] = "";
         for (x = 0; x <= 8; x++) {
@@ -230,7 +230,7 @@ function jsonformat(inputjson) {
             outputjson[i][col_names[8]] = "N/A";
         }
         //set default print value to true
-        outputjson[i][col_names[9]] = true;
+        outputjson[i][col_names[9]] = "true";
 
     }
     return outputjson;
