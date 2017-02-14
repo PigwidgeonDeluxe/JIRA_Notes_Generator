@@ -12,13 +12,19 @@
 
     <title>JIRA Notes Table</title>
 </head>
-
+    <input type="hidden" id="refreshed" value="no"/>
 <body>
     <!--Tabulator table-->
     <div id="main-table"></div> 
 </body>
 
 <script type="text/javascript">
+//refesh the page if arriving from a different page
+ onload = function () {
+                   var e = document.getElementById("refreshed");
+                   if (e.value == "no") e.value = "yes";
+                   else { e.value = "no"; location.reload(); }
+               }
     //run script once the document is fully loaded
     $(document).ready(function() {
         $("#main-table").tabulator({ //define Tabulator

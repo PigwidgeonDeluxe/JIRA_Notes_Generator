@@ -65,10 +65,10 @@
 
         //populate and create the column cells/data
         for (i = 0; i < tabledata.length; i++) { //loop by row
-            if (tabledata[i][columndata[9]] == "true" || true){
+            if (tabledata[i][columndata[9]] == "true"){
                 content += '<tr>';
                 for (x = 1; x < columndata.length - 1; x++) { //loop by column of current row (omit last 'print' row -)
-                    content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).substr(1).slice(0, -1).replace(/\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />').replace(/\\/g, "").replace('<center><td valign="top">', "") + '</td>';
+                    content += '<td>' + (JSON.stringify(tabledata[i][columndata[x]])).substr(1).slice(0, -1).replace(/\\r|\\t/g, '').replace(/\\n\\n|\\n/g, '<br />').replace(/\\/g, "") + '</td>';
                 }
                 content += '</tr>';
             }
