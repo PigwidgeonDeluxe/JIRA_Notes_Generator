@@ -48,9 +48,9 @@ This project is licensed under the MIT license. Refer to LICENSE.md for details.
 ##Screenshots
 ***
 ###Login Page
-![Login Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20login.png)
+![Login Page](JIRA_Notes_Generator/screenshots/jira note generator login.png)
 ###Main Page
-![Main Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20table.png)
+![Main Page](JIRA_Notes_Generator/screenshots/jira note generator table.png)
 ###Print Page
-![Print Page](https://github.com/PigwidgeonDeluxe/JIRA_notes_generator/blob/master/jira%20note%20generator%20print.png)
+![Print Page](JIRA_Notes_Generator/screenshots/jira note generator print.png)
 ***
