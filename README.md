@@ -48,9 +48,9 @@ This project is licensed under the MIT license. Refer to LICENSE.md for details.
 ##Screenshots
 ***
 ###Login Page
-![Login Page](JIRA_Notes_Generator/screenshots/jira note generator login.png)
+![Login Page](screenshots/jira note generator login.png)
 ###Main Page
-![Main Page](JIRA_Notes_Generator/screenshots/jira note generator table.png)
+![Main Page](screenshots/jira note generator table.png)
 ###Print Page
-![Print Page](JIRA_Notes_Generator/screenshots/jira note generator print.png)
+![Print Page](screenshots/jira note generator print.png)
 ***
