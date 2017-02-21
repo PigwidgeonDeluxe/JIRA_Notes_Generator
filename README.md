@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator
-Latest version: V 0.6.7 - Fixed bug where print page is not refreshing when going back
+Latest version: V 0.6.8 - Added the ability to retain sorting order from table when printing. Removed horizontal overflow (tabulator css)
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
