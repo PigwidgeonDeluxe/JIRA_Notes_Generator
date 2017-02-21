@@ -30,7 +30,7 @@ This webapp does not have HTTPS for communication between the webapp and the use
 ###Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). 
 ##Print selection
-You can now select which issues to print and omit. The default print option is to print, and clicking on the P? column ticks either enables or disables the issue for printing. (Note: if you ever go back to the table page, make sure to refresh the page otherwise the print page might not work properly the next time)
+You can now select which issues to print and omit. The default print option is to print, and clicking on the corresponding "P?" column ticks either enables or disables the issue for printing. (Note: if you ever go back to the table page, make sure to refresh the page otherwise the print page might not work properly the next time)
 
 ##Troubleshooting Tips
 ###ETIMEDOUT
