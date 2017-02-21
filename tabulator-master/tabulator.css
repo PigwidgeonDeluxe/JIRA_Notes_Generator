@@ -127,6 +127,7 @@
   width: 100%;
   white-space: nowrap;
   overflow: auto;
+  overflow-x: hidden;
 }
 .tabulator .tabulator-tableHolder .tabulator-table {
   position: relative;

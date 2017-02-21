@@ -148,7 +148,7 @@
                     editable:true,
                     formatter:"tickCross",
                     width: "2%"
-                }
+                },
             ],
             rowClick: function(e, id, data, row) { //open the issue for the row when the row is clicked
                 var data_chid =  data["ch_id"].replace(/[<b>]|[</b>]/g, "");
@@ -173,6 +173,23 @@
         var tabledata = <%- JSON.stringify(jsondata) %>
         //load sample data into the table
         $("#main-table").tabulator("setData", tabledata);
+        //when the data is sorted
+        $("#main-table").tabulator({
+            dataSorted:function(sortList, dir){
+                tabledata = $("#main-table").tabulator("getData")
+                //refresh the data 
+                $.ajax({
+                    type: 'POST',
+                    url: '/refreshdata',
+                    dataType: "json",
+                    data: {"jsonrefresh": tabledata},
+                    success: function(data){
+                        data = JSON.parse(data);
+                        console.log(data);
+                    }
+                })
+            },
+        });
     });
 </script>
 
