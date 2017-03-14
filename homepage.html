@@ -1,7 +1,11 @@
 <html>
+<meta charset="utf-8">
 <script src="jquery.min.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery-ui.js"></script>
 <head>
 <link rel="stylesheet" type="text/css" href="globalstyle.css">
+<link rel="stylesheet" href="jquery-ui.css">
 <title>JIRA Notes Generator</title>
 </head>
 <body>
@@ -35,7 +39,7 @@
                     <!--date range-->
                     <tr>
                         <td>Created:</td>
-                        <td> <input type="text" id="daterange_query_1" name="daterange_query_1" style="width: 47%" value="-7d"> – <input type="text" id="daterange_query_2" name="daterange_query_2" style="width: 47%" ></td>
+                        <td> <input type="date" id="daterange_query_1" name="daterange_query_1" style="width: 47%" value="-7d"> – <input type="date" id="daterange_query_2" name="daterange_query_2" style="width: 47%" ></td>
                     </tr>
                     <!--requested button-->
                     <tr>
@@ -47,8 +51,6 @@
                 <!--submit button-->
                 <p>
                     <td colspan="3"><input type="submit" class="button" style="height:30px;width:125px" value="Submit"></td>
-                </p>
-                <p style="font-size:80%">(Note: Valid date formats for Created include: 'yyyy/MM/dd HH:mm', 'yyyy-MM-dd HH:mm', 'yyyy/MM/dd', 'yyyy-MM-dd' or a period format e.g. '-5d', '4w2d'. Leave blank for no range. Dates are non-inclusive. ie. 2017-01-01 – 2017-01-02 only shows issues created between these two dates.)
                 </p>
 
         </form>
@@ -77,6 +79,14 @@ function validateForm() {
             $("#daterange_query_2").val("");
         });
     }); 
+
+//function for datepicker
+    $( function() {
+        $("#daterange_query_1").datepicker({ dateFormat: 'yy-mm-dd' });
+    } );
+    $( function() {
+        $("#daterange_query_2").datepicker({ dateFormat: 'yy-mm-dd' });
+    } );
 </script>
 
 </html>

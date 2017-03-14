@@ -22,25 +22,37 @@ app.get('/globalstyle.css', function(req, res) {
     res.sendFile(__dirname + "/globalstyle.css");
 })
 
-//send CSS for global html formatting
+//send jquery-ui
+app.get('/jquery-ui.js', function(req, res) {
+    //send homepage
+    res.sendFile(__dirname + "/jquery-ui-1.12.1/jquery-ui.js");
+})
+
+//send jquery.min
 app.get('/jquery.min.js', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/node_modules/jquery/dist/jquery.min.js");
 })
 
-//send CSS for global html formatting
+//send jquery-ui css
+app.get('/jquery-ui.css', function(req, res) {
+    //send homepage
+    res.sendFile(__dirname + "/jquery-ui-1.12.1/jquery-ui.css");
+})
+
+//send jquery-ui-1.12.1 css
 app.get('/jquery-ui.min.css', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/jquery-ui-1.12.1/jquery-ui.min.css");
 })
 
-//send CSS for global html formatting
+//send jquery.js
 app.get('/jquery.js', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/node_modules/jquery/dist/jquery.js");
 })
 
-//send CSS for global html formatting
+//send jquery-ui.min.js
 app.get('/jquery-ui.min.js', function(req, res) {
     //send homepage
     res.sendFile(__dirname + "/jquery-ui-1.12.1/jquery-ui.min.js");
@@ -115,11 +127,11 @@ app.post('/response', function(req, res, next) {
 
     //if the user defines a date range for both
     if (response["date_range_1"] != "" && response["date_range_2"] != "" ){
-        options["path"] += '%20AND%20created%20>%3D%20' + response["date_range_1"] +'%20AND%20created%20<%3D%20' + response["date_range_2"];
+        options["path"] += '%20AND%20created%20>%3D%20' + encodeURI(response["date_range_1"]) +'%20AND%20created%20<%3D%20' + encodeURI(response["date_range_2"]);
     } else if (response["date_range_1"] != "" && response["date_range_2"] == "" ){ //if the first query is not empty
-        options["path"] += '%20AND%20created%20>%3D%20' + response["date_range_1"] ;
+        options["path"] += '%20AND%20created%20>%3D%20' + encodeURI(response["date_range_1"]) ;
     } else if (response["date_range_1"] == "" && response["date_range_2"] != "" ){ //if the second query is not empty
-        options["path"] += '%20AND%20created%20<%3D%20' + response["date_range_2"] ;
+        options["path"] += '%20AND%20created%20<%3D%20' + encodeURI(response["date_range_2"]) ;
     } else { //if both are empty
         //do nothing
     }
