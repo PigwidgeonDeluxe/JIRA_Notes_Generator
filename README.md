@@ -29,9 +29,9 @@ This webapp does not have HTTPS for communication between the webapp and the use
 ## Date Range
 Valid date formats for Created include: 'yyyy/MM/dd HH:mm', 'yyyy-MM-dd HH:mm', 'yyyy/MM/dd', 'yyyy-MM-dd' or a period format e.g. '-5d', '4w2d'. Leave both blank for no range (not even spaces). Dates are non-inclusive. ie. 2017-01-01 – 2017-01-02 only shows issues created between these two dates and not on the day of 2017-01-02. This is because JIRA uses 12:00 AM by default unless specified otherwise.
 
-### Using the Print function
+## Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). 
-## Print selection
+### Print selection
 You can now select which issues to print and omit. The default print option is to print, and clicking on the corresponding "P?" column ticks either enables or disables the issue for printing. (Note: if you ever go back to the table page, make sure to refresh the page otherwise the print page might not work properly the next time)
 
 ## Troubleshooting Tips
