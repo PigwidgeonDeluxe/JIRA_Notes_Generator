@@ -27,7 +27,7 @@ This webapp does not have HTTPS for communication between the webapp and the use
 2. Run the webapp from a command prompt or terminal; open cmd/terminal, cd  to the webapp directory, and start the webapp using "node server.js" without quotes.
 3. The webapp should start on localhost port 8081 (localhost:8081). A different address can be specified by editing server.js. The webapp is default tailored for a custom JIRA so custom fields may differ from other JIRAs.
 ## Date Range
-Valid date formats for Created include: 'yyyy/MM/dd HH:mm', 'yyyy-MM-dd HH:mm', 'yyyy/MM/dd', 'yyyy-MM-dd' or a period format e.g. '-5d', '4w2d'. Leave both blank for no range (not even spaces). Dates are non-inclusive. ie. 2017-01-01 – 2017-01-02 only shows issues created between these two dates and not on the day of 2017-01-02. This is because JIRA uses 12:00 AM by default unless specified otherwise.
+Valid date format for Created is 'yyyy-MM-dd'. Leave both blank for no range (not even spaces). Dates are non-inclusive. ie. 2017-01-01 – 2017-01-02 only shows issues created between these two dates and not on the day of 2017-01-02. This is because JIRA uses 12:00 AM by default unless specified otherwise.
 
 ## Using the Print function
 The Print function takes the user to a page containing a simple html table version of the original table which will allow better printing compatibility. To use this, simply press the print button and then print the page using your browser (i.e. Ctrl+P in Chrome). 
