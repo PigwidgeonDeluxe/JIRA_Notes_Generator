@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator - Changes Management
-Latest version: V 0.7.0 - Changed the Date Range to Created; now searches for issues between a specified range of dates. Previous range period formats still work in addition to this new change.
+Latest version: V 0.7.1 - Changed the date text fields to datepickers and restricted input to "date" type.
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
