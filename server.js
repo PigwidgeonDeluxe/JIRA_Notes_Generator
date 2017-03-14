@@ -96,7 +96,8 @@ app.post('/response', function(req, res, next) {
         username: req.body.user_query,
         password: req.body.pw_query,
         project_key: req.body.pk_query,
-        date_range: req.body.daterange_query,
+        date_range_1: req.body.daterange_query_1,
+        date_range_2: req.body.daterange_query_2,
         is_requested: req.body.requested_query
     };
 
@@ -112,10 +113,19 @@ app.post('/response', function(req, res, next) {
         options["path"] += "%20AND%20status=requested";
     }
 
-    //if the user defines a date range
-    if (response["date_range"] != ""){
-        options["path"] += "%20AND%20updated>=" + response["date_range"];
+    //if the user defines a date range for both
+    if (response["date_range_1"] != "" && response["date_range_2"] != "" ){
+        options["path"] += '%20AND%20created%20>%3D%20' + response["date_range_1"] +'%20AND%20created%20<%3D%20' + response["date_range_2"];
+    } else if (response["date_range_1"] != "" && response["date_range_2"] == "" ){ //if the first query is not empty
+        options["path"] += '%20AND%20created%20>%3D%20' + response["date_range_1"] ;
+    } else if (response["date_range_1"] == "" && response["date_range_2"] != "" ){ //if the second query is not empty
+        options["path"] += '%20AND%20created%20<%3D%20' + response["date_range_2"] ;
+    } else { //if both are empty
+        //do nothing
     }
+
+
+
 
 
     //callback function -  executed during https.get
