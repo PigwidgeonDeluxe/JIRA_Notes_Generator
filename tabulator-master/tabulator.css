@@ -327,3 +327,9 @@
   font-size: 16px;
   color: #590000;
 }
+.tabulator .tabulator-header .tabulator-col .tabulator .tabulator-header .tabulator-col-row-handle {
+    white-space: normal;
+}
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title {
+    white-space: normal;  
+}

@@ -1,5 +1,5 @@
 # JIRA Notes Table Generator - Changes Management
-Latest version: V 0.7.1 - Changed the date text fields to datepickers and restricted input to "date" type.
+Latest version: V 0.7.2 - Changed the title to Change Management FSC and column header Effort to Effort Cost Estimate.
 ## Synopsis
 This is a webapp that generates a table of 'Change' issues/tasks from JIRA using the JIRA API for quick meeting notes. This webapp also generates a print-friendly page of said meeting notes.
 
