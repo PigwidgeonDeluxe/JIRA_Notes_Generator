@@ -115,7 +115,7 @@ app.post('/response', function(req, res, next) {
 
     //specify host/path/user + jql for JIRA API
     var options = {
-        host: 'ondhdp.atlassian.net',
+        host: settings_jira_host,
         path: "/rest/api/2/search?jql=issuetype%20=%20Change%20AND%20project=" + response["project_key"],
         auth: response["username"] + ":" + response["password"]
     };
@@ -268,6 +268,7 @@ fs.readFile('server-conf.json', 'utf8', function(err, data){
         try {
             var parsedsettings = JSON.parse(data)
             var settings_port = parsedsettings["port"];
+            var settings_jira_host = parsedsettings["jira_host"];
         } catch (err) {
             //if there is an error, print error to console and user and stop execution
             errormessage = "JSON.parse error: " + err + "; Check that the given information or port is valid.";
