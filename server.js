@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 //global variables
 var formattedjson;
+var settings_jira_host;
 //var for column names; allows for easier column addition but jsonformat still needs to be edited
 var col_names = ["id", "ch_id", "rfc_name", "description", "state", "priority", "impdate", "assignee", "effort", "print"];
 //set view engine to ejs
@@ -263,12 +264,12 @@ function jsonformat(inputjson) {
 fs.readFile('server-conf.json', 'utf8', function(err, data){
     if (err) {
         console.log("Configuration file server-conf.json' not found. Using default port 8081.");
-        var settings_port = "8081";
+        //var settings_port = "8081";
     } else {
         try {
             var parsedsettings = JSON.parse(data)
             var settings_port = parsedsettings["port"];
-            var settings_jira_host = parsedsettings["jira_host"];
+            settings_jira_host = parsedsettings["jira_host"];
         } catch (err) {
             //if there is an error, print error to console and user and stop execution
             errormessage = "JSON.parse error: " + err + "; Check that the given information or port is valid.";
